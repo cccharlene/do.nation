@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2016 at 05:11 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.20
+-- Generation Time: Oct 14, 2016 at 07:01 AM
+-- Server version: 10.1.9-MariaDB
+-- PHP Version: 5.6.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -64,6 +64,13 @@ CREATE TABLE `items` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`id`, `merchantName`, `itemName`, `itemType`, `itemCount`, `itemStatus`, `itemImage`, `expiryDate`, `created_at`, `updated_at`) VALUES
+(1, 'Bench Malolos', 'White Shirt', 'Clothing', '100', 'A', '', '0000-00-00', '2016-10-13 20:19:21', '2016-10-13 20:19:21');
+
 -- --------------------------------------------------------
 
 --
@@ -81,6 +88,16 @@ CREATE TABLE `merchant` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `merchant`
+--
+
+INSERT INTO `merchant` (`id`, `merchantName`, `merchantAddress`, `merchantImage`, `contactPerson`, `contactNumber`, `contactEmail`, `created_at`, `updated_at`) VALUES
+(3, 'BreadTalk Philippines', 'SM Mall Of Asia, J.W. Diokno Blvd, Pasay, 1300 Metro Manila', '', 'Karen Cano', '09183551525', 'karenirene.cano1203@gmail.com', '2016-10-13 20:07:08', '2016-10-13 20:07:08'),
+(4, 'Philippine Red Cross', 'Gen. Luna St. Cor. Victoria St., Brgy 658 Zone 70, Intramuros, Manila, 1002 Metro Manila', '', 'Charlene Canedo', '09352056477', 'charlenecanedo@gmail.com', '2016-10-13 20:08:42', '2016-10-13 20:08:42'),
+(5, 'Bench SouthMall', 'SM South Mall, Alabang Zapote Road Pilar Village, Almanza Uno, Las Pinas, 1750 Metro Manila', '', 'Agnes Nuguidq', '09175963143', 'agnes.nuguid@gmail.com', '2016-10-13 20:09:38', '2016-10-13 20:09:38'),
+(6, 'Bench Malolos', 'Robinsons Place Malolos, MacArthur Hwy, Malolos, 3000 ', '', 'Dio Josol', '09177108258', 'gdjosol@gmail.com', '2016-10-13 20:10:47', '2016-10-13 20:10:47');
 
 -- --------------------------------------------------------
 
@@ -168,7 +185,8 @@ ALTER TABLE `items`
 -- Indexes for table `merchant`
 --
 ALTER TABLE `merchant`
-  ADD PRIMARY KEY (`merchantName`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `merchantName` (`merchantName`);
 
 --
 -- Indexes for table `password_resets`
@@ -203,7 +221,12 @@ ALTER TABLE `beneficiary`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `merchant`
+--
+ALTER TABLE `merchant`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `user`
 --
@@ -214,16 +237,6 @@ ALTER TABLE `user`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `items`
---
-ALTER TABLE `items`
-  ADD CONSTRAINT `fk_merchant_name` FOREIGN KEY (`merchantName`) REFERENCES `merchant` (`merchantName`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
