@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2016 at 02:23 AM
+-- Generation Time: Oct 14, 2016 at 05:11 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -32,9 +32,18 @@ CREATE TABLE `beneficiary` (
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `contactNumber` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `charityName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `beneficiary`
+--
+
+INSERT INTO `beneficiary` (`id`, `name`, `address`, `email`, `contactNumber`, `charityName`, `created_at`, `updated_at`) VALUES
+(1, 'Karen Irene Cano', 'Tondo, Manila', 'karenirene.cano1203@gmail.com', '09123456781', 'Kapwa Ko Mahal Ko', '2016-10-14 00:42:50', NULL),
+(2, 'Charlene Canedo', 'Tondo, Manila', 'charlenecanedo@gmail.com', '09234556667', 'Childhope Asia-Philippines', '2016-10-14 00:42:50', NULL);
 
 -- --------------------------------------------------------
 
@@ -50,6 +59,7 @@ CREATE TABLE `items` (
   `itemCount` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `itemStatus` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `itemImage` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `expiryDate` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -64,6 +74,7 @@ CREATE TABLE `merchant` (
   `id` int(11) NOT NULL,
   `merchantName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `merchantAddress` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `merchantImage` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `contactPerson` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `contactNumber` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `contactEmail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -104,6 +115,21 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL,
+  `company` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -152,6 +178,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_token_index` (`token`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -166,12 +198,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `beneficiary`
 --
 ALTER TABLE `beneficiary`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
