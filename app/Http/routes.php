@@ -15,13 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Char
 Route::post('items','ItemsController@getItems');
 Route::post('merch','ItemsController@getMerchItems');
 Route::post('signUp','SignUp@signUp');
 Route::post('login','SignUp@login');
-
-//Test
 Route::get('viewTest','SignUp@testView');
 Route::post('test', 'SignUp@checkRole');
 Route::post('upload', 'SignUp@upload');
+Route::post('signup','SignUpController@signup');
+Route::post('addItem','ItemController@addItem');
